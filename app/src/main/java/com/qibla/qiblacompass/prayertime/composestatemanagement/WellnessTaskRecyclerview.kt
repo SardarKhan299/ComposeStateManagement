@@ -10,10 +10,10 @@ data class WellnessTask(val id: Int, val label: String)
 fun getWellnessTasks() = List(30) { i -> WellnessTask(i, "Task # $i") }
 
 @Composable
-fun WellnessTaskRecyclerview(modifier: Modifier = Modifier,list:List<WellnessTask> = remember {getWellnessTasks()}) {
+fun WellnessTaskRecyclerview(modifier: Modifier = Modifier,list:List<WellnessTask>,onClose:(WellnessTask)->Unit) {
     LazyColumn(modifier = modifier){
         items(list){ task->
-            WellnessTaskItem(taskName = task.label)
+            WellnessTaskItem(taskName = task.label,onClose = { onClose(task) })
         }
     }
 
